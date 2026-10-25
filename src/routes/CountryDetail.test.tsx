@@ -187,6 +187,13 @@ describe('CountryDetail', () => {
     expect(screen.getByRole('link', { name: 'Back to all countries' })).toHaveAttribute('href', '/')
   })
 
+  it('scrolls to the top when opened', async () => {
+    renderDetail('/country/BEL')
+
+    await screen.findByRole('heading', { level: 1, name: 'Belgium' })
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
+  })
+
   it('goes home when Back is pressed on a directly loaded detail page', async () => {
     const user = userEvent.setup()
     renderDetail('/country/FJI')

@@ -1,0 +1,23 @@
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 3rem;
+  padding: 0.5rem 2rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.back-button:hover {
+  opacity: 0.85;
+}
+
+@media (min-width: 48em) {
+  .back-button {
+    margin-bottom: 5rem;
+    padding-inline: 2.25rem;
+  }
+}

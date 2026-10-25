@@ -1,0 +1,23 @@
+.not-found {
+  padding-block: 4rem;
+}
+
+.not-found h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.not-found p {
+  margin-block: 1rem 2rem;
+  color: var(--color-muted);
+}
+
+.not-found__link {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
