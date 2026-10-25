@@ -11,28 +11,30 @@ export interface UseCountriesResult {
   retry: () => void
 }
 
+interface State {
+  countries: Country[]
+  status: CountriesStatus
+  error: Error | null
+}
+
+const initialState: State = { countries: [], status: 'loading', error: null }
+
 export function useCountries(): UseCountriesResult {
-  const [countries, setCountries] = useState<Country[]>([])
-  const [status, setStatus] = useState<CountriesStatus>('loading')
-  const [error, setError] = useState<Error | null>(null)
+  const [state, setState] = useState<State>(initialState)
   const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
     let cancelled = false
 
-    setStatus('loading')
-    setError(null)
-
     getCountries()
-      .then((result) => {
+      .then((countries) => {
         if (cancelled) return
-        setCountries(result)
-        setStatus('success')
+        setState({ countries, status: 'success', error: null })
       })
       .catch((cause: unknown) => {
         if (cancelled) return
-        setError(cause instanceof Error ? cause : new Error(String(cause)))
-        setStatus('error')
+        const error = cause instanceof Error ? cause : new Error(String(cause))
+        setState({ countries: [], status: 'error', error })
       })
 
     return () => {
@@ -42,8 +44,9 @@ export function useCountries(): UseCountriesResult {
 
   const retry = useCallback(() => {
     resetCountriesCache()
+    setState(initialState)
     setAttempt((current) => current + 1)
   }, [])
 
-  return { countries, status, error, retry }
+  return { ...state, retry }
 }

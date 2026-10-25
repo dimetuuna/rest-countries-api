@@ -41,3 +41,10 @@ Thumbs.db
 
 # Superpowers scratch
 /.superpowers/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
