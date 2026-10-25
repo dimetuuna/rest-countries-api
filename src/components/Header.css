@@ -1,0 +1,32 @@
+.site-header {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  z-index: 1;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 5rem;
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+.site-header__title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 48em) {
+  .site-header__inner {
+    width: min(100% - 4rem, var(--container));
+  }
+
+  .site-header__title {
+    font-size: 1.5rem;
+  }
+}

@@ -6,6 +6,7 @@
   --color-input: hsl(0, 0%, 50%);
   --shadow-card: 0 0 10px 2px hsl(0 0% 0% / 0.06);
   --radius: 5px;
+  --container: 80rem;
   color-scheme: light;
 }
 

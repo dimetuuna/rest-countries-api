@@ -1,0 +1,25 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  margin-right: -0.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+.theme-toggle__icon {
+  flex-shrink: 0;
+}
+
+@media (min-width: 48em) {
+  .theme-toggle {
+    font-size: 1rem;
+    gap: 0.625rem;
+  }
+}
