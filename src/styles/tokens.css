@@ -1,0 +1,20 @@
+:root {
+  --color-bg: hsl(0, 0%, 99%);
+  --color-surface: hsl(0, 100%, 100%);
+  --color-text: hsl(200, 15%, 8%);
+  --color-muted: hsl(0, 0%, 50%);
+  --color-input: hsl(0, 0%, 50%);
+  --shadow-card: 0 0 10px 2px hsl(0 0% 0% / 0.06);
+  --radius: 5px;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --color-bg: hsl(207, 26%, 17%);
+  --color-surface: hsl(209, 23%, 22%);
+  --color-text: hsl(0, 100%, 100%);
+  --color-muted: hsl(0, 0%, 85%);
+  --color-input: hsl(0, 0%, 100%);
+  --shadow-card: 0 0 10px 2px hsl(0 0% 0% / 0.35);
+  color-scheme: dark;
+}
