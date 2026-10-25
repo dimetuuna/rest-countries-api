@@ -20,6 +20,6 @@
 }
 
 .border-links__none {
-  color: var(--color-muted);
+  color: var(--color-muted-text);
   font-size: 0.875rem;
 }

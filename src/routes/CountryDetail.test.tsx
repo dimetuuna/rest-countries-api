@@ -194,6 +194,24 @@ describe('CountryDetail', () => {
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
   })
 
+  it('names the document after the country', async () => {
+    renderDetail('/country/BEL')
+
+    await screen.findByRole('heading', { level: 1, name: 'Belgium' })
+    expect(document.title).toBe('Belgium — Where in the world?')
+  })
+
+  it('keeps a heading while the request is failing', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')))
+
+    renderDetail('/country/BEL')
+
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Country details' }),
+    ).toBeVisible()
+    expect(screen.getByRole('alert')).toBeVisible()
+  })
+
   it('goes home when Back is pressed on a directly loaded detail page', async () => {
     const user = userEvent.setup()
     renderDetail('/country/FJI')

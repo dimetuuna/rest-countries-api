@@ -5,7 +5,10 @@ let cache: Promise<Country[]> | null = null
 
 export function getCountries(): Promise<Country[]> {
   if (!cache) {
-    cache = fetch(`${import.meta.env.BASE_URL}data.json`)
+    cache = fetch(`${import.meta.env.BASE_URL}data.json`, {
+      // A hung request must reach the error state so Retry stays reachable.
+      signal: AbortSignal.timeout(10_000),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to load countries (HTTP ${response.status})`)

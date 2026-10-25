@@ -6,6 +6,7 @@ import { ErrorState } from '../components/ErrorState'
 import { Flag } from '../components/Flag'
 import { LoadingState } from '../components/LoadingState'
 import { useCountries } from '../hooks/useCountries'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { formatPopulation } from '../lib/format'
 import { buildCountryIndex, resolveBorders } from '../lib/selectors'
 import { NotFound } from './NotFound'
@@ -22,6 +23,17 @@ export function CountryDetail() {
   const index = useMemo(() => buildCountryIndex(countries), [countries])
   const country = index.get(code.trim().toUpperCase())
 
+  const pageTitle =
+    status === 'error'
+      ? 'Error — Where in the world?'
+      : status === 'loading'
+        ? 'Loading country — Where in the world?'
+        : country
+          ? `${country.name} — Where in the world?`
+          : 'Country not found — Where in the world?'
+
+  useDocumentTitle(pageTitle)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [code])
@@ -31,6 +43,7 @@ export function CountryDetail() {
       <main className="country-detail">
         <div className="container">
           <BackButton />
+          <h1 className="visually-hidden">Country details</h1>
           <LoadingState />
         </div>
       </main>
@@ -42,6 +55,7 @@ export function CountryDetail() {
       <main className="country-detail">
         <div className="container">
           <BackButton />
+          <h1 className="visually-hidden">Country details</h1>
           <ErrorState message={error?.message ?? 'Unknown error'} onRetry={retry} />
         </div>
       </main>

@@ -97,21 +97,29 @@ npm run preview    # serve the production build
 ## Tests
 
 ```bash
-npm test           # Vitest + Testing Library, 53 tests
-npm run e2e        # Playwright, 13 tests (builds and serves the app first)
+npm test           # Vitest + Testing Library, 60 tests
+npm run e2e        # Playwright, 18 tests (builds and serves the app first)
 npm run lint
 ```
 
-The end-to-end suite covers the four flows most likely to break: search + region filtering,
-home → detail, detail → border country, and opening `/country/FJI` directly then pressing Back.
+The end-to-end suite covers the flows most likely to break: search + region filtering,
+home → detail, detail → border country, opening `/country/FJI` directly then pressing Back, a
+failed `data.json` request followed by Retry, an unreachable flag CDN, and axe scans of the home
+page (both themes), a country with no borders, the 404 page and the error state.
 
 ## Deployment
 
-The app fetches `${import.meta.env.BASE_URL}data.json`, so it works on Vercel/Netlify at the root
-and on GitHub Pages from a subpath. For GitHub Pages, set `base: '/<repo-name>/'` in
-`vite.config.ts`; no other change is needed. `vite preview` refuses to fall back for unknown paths
-by default — hosts must rewrite unknown routes to `index.html` (Vercel and Pages both do this with
-the right config).
+The app fetches `${import.meta.env.BASE_URL}data.json`, and `BrowserRouter` uses the same value as
+its `basename`, so a subpath deploy works without code changes.
+
+- **Vercel / Netlify:** `vercel.json` and `public/_redirects` rewrite unknown paths to
+  `index.html`, so `/country/BEL` survives a hard refresh. Static files (`data.json`, the JS
+  bundle) are served before those rewrites.
+- **GitHub Pages:** set `base: '/<repo-name>/'` in `vite.config.ts` and run
+  `npm run build:pages`. The build copies `dist/index.html` to `dist/404.html`, which is Pages'
+  fallback for deep links.
+
+There is no live deployment in this repository yet; the configs above are what a deploy would use.
 
 ## Known limitations
 

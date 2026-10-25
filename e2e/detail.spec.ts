@@ -51,3 +51,25 @@ test('detail page has no accessibility violations', async ({ page }) => {
   const results = await new AxeBuilder({ page }).analyze()
   expect(results.violations).toEqual([])
 })
+
+test('detail page without borders has no accessibility violations', async ({ page }) => {
+  await page.goto('/country/FJI')
+  await expect(page.getByText('None')).toBeVisible()
+
+  const results = await new AxeBuilder({ page }).analyze()
+  expect(results.violations).toEqual([])
+})
+
+test('not found page has no accessibility violations', async ({ page }) => {
+  await page.goto('/country/XXX')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Country not found')
+
+  const results = await new AxeBuilder({ page }).analyze()
+  expect(results.violations).toEqual([])
+})
+
+test('unknown route renders the generic not found page', async ({ page }) => {
+  await page.goto('/not-a-route')
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Page not found')
+})

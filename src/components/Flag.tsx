@@ -10,6 +10,7 @@ export function Flag({ country, eager = false }: FlagProps) {
   return (
     <div className="flag">
       <img
+        key={country.flags.svg}
         className="flag__image"
         src={country.flags.svg}
         alt=""

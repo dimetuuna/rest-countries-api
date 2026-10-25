@@ -171,4 +171,28 @@ describe('Home', () => {
     expect(antarctica).toHaveTextContent('Capital:')
     expect(antarctica).toHaveTextContent('—')
   })
+
+  it('retries a failed request from the error state', async () => {
+    const fetchMock = vi
+      .fn()
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce({ ok: true, status: 200, json: async () => fixture })
+    vi.stubGlobal('fetch', fetchMock)
+    const user = userEvent.setup()
+
+    renderHome()
+    expect(await screen.findByRole('alert')).toHaveTextContent('Could not load countries')
+
+    await user.click(screen.getByRole('button', { name: 'Retry' }))
+
+    await waitFor(() => expect(cardNames()).toHaveLength(4))
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+  })
+
+  it('keeps the page title stable', async () => {
+    renderHome()
+    await waitFor(() => expect(cardNames()).toHaveLength(4))
+
+    expect(document.title).toBe('Where in the world?')
+  })
 })

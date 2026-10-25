@@ -24,7 +24,7 @@
 }
 
 .search-field__input::placeholder {
-  color: var(--color-muted);
+  color: var(--color-muted-text);
   opacity: 1;
 }
 

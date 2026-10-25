@@ -7,7 +7,7 @@
 }
 
 .state-message__detail {
-  color: var(--color-muted);
+  color: var(--color-muted-text);
   font-size: 0.875rem;
 }
 

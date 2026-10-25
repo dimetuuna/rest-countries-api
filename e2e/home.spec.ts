@@ -53,3 +53,29 @@ test('home has no accessibility violations in either theme', async ({ page }) =>
   const dark = await new AxeBuilder({ page }).analyze()
   expect(dark.violations).toEqual([])
 })
+
+test('grid survives an unreachable flag CDN', async ({ page }) => {
+  await page.route('**flagcdn.com/**', (route) => route.abort())
+
+  await page.goto('/')
+
+  await expect(page.locator('.country-card')).toHaveCount(250)
+  const flagBox = await page.locator('.flag').first().boundingBox()
+  expect(flagBox?.height ?? 0).toBeGreaterThan(100)
+})
+
+test('error state is accessible and retries successfully', async ({ page }) => {
+  let offline = true
+  await page.route('**/data.json', (route) => (offline ? route.abort() : route.continue()))
+
+  await page.goto('/')
+  await expect(page.getByRole('alert')).toBeVisible()
+
+  const results = await new AxeBuilder({ page }).analyze()
+  expect(results.violations).toEqual([])
+
+  offline = false
+  await page.getByRole('button', { name: 'Retry' }).click()
+
+  await expect(page.locator('.country-card')).toHaveCount(250)
+})

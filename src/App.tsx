@@ -12,7 +12,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/country/:code" element={<CountryDetail />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound generic />} />
       </Routes>
     </ThemeProvider>
   )

@@ -6,6 +6,7 @@ import { LoadingState } from '../components/LoadingState'
 import { RegionFilter } from '../components/RegionFilter'
 import { SearchField } from '../components/SearchField'
 import { useCountries } from '../hooks/useCountries'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { filterCountries, getRegions } from '../lib/selectors'
 import './Home.css'
 
@@ -13,6 +14,8 @@ export function Home() {
   const { countries, status, error, retry } = useCountries()
   const [query, setQuery] = useState('')
   const [region, setRegion] = useState<string | null>(null)
+
+  useDocumentTitle('Where in the world?')
 
   const deferredQuery = useDeferredValue(query)
   const regions = useMemo(() => getRegions(countries), [countries])
