@@ -18,8 +18,8 @@ describe('Header', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByRole('heading', { level: 1, name: 'Where in the world?' })).toBeVisible()
     expect(screen.getByRole('link', { name: 'Where in the world?' })).toHaveAttribute('href', '/')
+    expect(screen.getByRole('banner')).toBeVisible()
     expect(screen.getByRole('button', { name: 'Dark Mode' })).toBeVisible()
   })
 })

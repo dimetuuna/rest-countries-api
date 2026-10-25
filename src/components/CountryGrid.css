@@ -1,0 +1,18 @@
+.country-grid {
+  display: grid;
+  gap: 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 34em) {
+  .country-grid {
+    grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  }
+}
+
+@media (min-width: 48em) {
+  .country-grid {
+    gap: 4.5rem;
+  }
+}

@@ -6,9 +6,9 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <h1 className="site-header__title">
+        <p className="site-header__title">
           <Link to="/">Where in the world?</Link>
-        </h1>
+        </p>
         <ThemeToggle />
       </div>
     </header>

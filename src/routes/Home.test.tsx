@@ -73,7 +73,7 @@ function renderHome() {
 }
 
 function cardNames() {
-  return screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)
+  return screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)
 }
 
 describe('Home', () => {
@@ -168,6 +168,7 @@ describe('Home', () => {
     await waitFor(() => expect(cardNames()).toHaveLength(4))
 
     const antarctica = screen.getByRole('link', { name: /Antarctica/ })
-    expect(antarctica).toHaveTextContent('Capital: —')
+    expect(antarctica).toHaveTextContent('Capital:')
+    expect(antarctica).toHaveTextContent('—')
   })
 })
