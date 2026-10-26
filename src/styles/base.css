@@ -10,6 +10,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  background: var(--color-bg);
+  min-height: 100%;
 }
 
 body {
