@@ -1,8 +1,14 @@
-# REST Countries API with colour theme switcher
+# 🌍 REST Countries API with Colour Theme Switcher
 
-A country explorer built on the Frontend Mentor challenge. Browse 250 countries, search them by
-name or native name, filter by region, open a country's detail page and jump to its neighbours —
-in light or dark mode.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://rest-countries-api-fawn-delta.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-dimetuuna%2Frest--countries--api-181717?style=for-the-badge&logo=github)](https://github.com/dimetuuna/rest-countries-api)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+
+A country explorer built on the [Frontend Mentor](https://www.frontendmentor.io) challenge. Browse 250
+countries, search them by name or native name, filter by region, open a country's detail page and jump
+to its neighbours — in light or dark mode.
 
 **Live demo:** https://rest-countries-api-fawn-delta.vercel.app
 
