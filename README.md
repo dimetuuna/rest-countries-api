@@ -4,6 +4,8 @@ A country explorer built on the Frontend Mentor challenge. Browse 250 countries,
 name or native name, filter by region, open a country's detail page and jump to its neighbours —
 in light or dark mode.
 
+**Live demo:** https://rest-countries-api-fawn-delta.vercel.app
+
 ![Home page, light mode](screenshots/home-light.png)
 
 ## Features
@@ -102,7 +104,7 @@ npm run preview    # serve the production build
 
 ```bash
 npm test           # Vitest + Testing Library, 60 tests
-npm run e2e        # Playwright, 18 tests (builds and serves the app first)
+npm run e2e        # Playwright, 19 tests (builds and serves the app first)
 npm run lint
 ```
 
@@ -123,7 +125,10 @@ its `basename`, so a subpath deploy works without code changes.
   `npm run build:pages`. The build copies `dist/index.html` to `dist/404.html`, which is Pages'
   fallback for deep links.
 
-There is no live deployment in this repository yet; the configs above are what a deploy would use.
+The live site runs on Vercel at **https://rest-countries-api-fawn-delta.vercel.app**, built from
+`main` with the config above: `/country/BEL` returns the app and survives a hard refresh, and
+`data.json` is served as a static file before the rewrite. Lighthouse on the deployed URL reports
+100 accessibility, 100 best practices and 100 SEO.
 
 ## Known limitations
 
