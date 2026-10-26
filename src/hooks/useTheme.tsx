@@ -47,7 +47,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // form controls) in sync with the app theme. On mobile browsers the
     // static `light dark` meta can otherwise leave the canvas dark when the
     // OS is in dark mode, even though the page itself is light.
-    const colorScheme = theme === 'dark' ? 'dark' : 'light'
+    const colorScheme = theme === 'dark' ? 'only dark' : 'only light'
     const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]')
     if (colorSchemeMeta) colorSchemeMeta.setAttribute('content', colorScheme)
 

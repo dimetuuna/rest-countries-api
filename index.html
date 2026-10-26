@@ -33,7 +33,7 @@
         }
         document.documentElement.dataset.theme = theme
         var colorSchemeMeta = document.querySelector('meta[name="color-scheme"]')
-        if (colorSchemeMeta) colorSchemeMeta.setAttribute('content', theme)
+        if (colorSchemeMeta) colorSchemeMeta.setAttribute('content', theme === 'dark' ? 'only dark' : 'only light')
       })()
     </script>
   </head>

@@ -8,7 +8,7 @@
   --shadow-card: 0 0 10px 2px hsl(0 0% 0% / 0.06);
   --radius: 5px;
   --container: 80rem;
-  color-scheme: light;
+  color-scheme: only light;
 }
 
 [data-theme='dark'] {
@@ -19,5 +19,5 @@
   --color-muted-text: hsl(0, 0%, 85%);
   --color-input: hsl(0, 0%, 100%);
   --shadow-card: 0 0 10px 2px hsl(0 0% 0% / 0.35);
-  color-scheme: dark;
+  color-scheme: only dark;
 }
