@@ -12,6 +12,20 @@ to its neighbours — in light or dark mode.
 
 **Live demo:** https://rest-countries-api-fawn-delta.vercel.app
 
+## 📸 Screenshots
+
+| Home (light) | Home (dark) |
+| --- | --- |
+| ![Home light](screenshots/home-light.png) | ![Home dark](screenshots/home-dark.png) |
+
+| Detail (light) | Detail (dark) |
+| --- | --- |
+| ![Detail light](screenshots/detail-light.png) | ![Detail dark](screenshots/detail-dark.png) |
+
+| Mobile (light) |
+| --- |
+| ![Home mobile light](screenshots/home-mobile-light.png) |
+
 ![Home page, light mode](screenshots/home-light.png)
 
 ## Features
@@ -144,6 +158,14 @@ The live site runs on Vercel at **https://rest-countries-api-fawn-delta.vercel.a
 `main` with the config above: `/country/BEL` returns the app and survives a hard refresh, and
 `data.json` is served as a static file before the rewrite. Lighthouse on the deployed URL reports
 100 accessibility, 100 best practices and 100 SEO.
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome. Feel free to open an issue or submit a PR.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
 
 ## Known limitations
 
