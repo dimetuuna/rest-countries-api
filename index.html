@@ -32,6 +32,8 @@
           // Storage can throw in private mode; the OS preference above still applies.
         }
         document.documentElement.dataset.theme = theme
+        var colorSchemeMeta = document.querySelector('meta[name="color-scheme"]')
+        if (colorSchemeMeta) colorSchemeMeta.setAttribute('content', theme)
       })()
     </script>
   </head>

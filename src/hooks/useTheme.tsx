@@ -42,6 +42,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+
+    // Keep the browser's own chrome (address bar, overscroll canvas, native
+    // form controls) in sync with the app theme. On mobile browsers the
+    // static `light dark` meta can otherwise leave the canvas dark when the
+    // OS is in dark mode, even though the page itself is light.
+    const colorScheme = theme === 'dark' ? 'dark' : 'light'
+    const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]')
+    if (colorSchemeMeta) colorSchemeMeta.setAttribute('content', colorScheme)
+
+    let themeColorMeta = document.querySelector('meta[name="theme-color"]')
+    if (!themeColorMeta) {
+      themeColorMeta = document.createElement('meta')
+      themeColorMeta.setAttribute('name', 'theme-color')
+      document.head.appendChild(themeColorMeta)
+    }
+    themeColorMeta.setAttribute('content', theme === 'dark' ? 'hsl(207, 26%, 17%)' : 'hsl(0, 0%, 99%)')
   }, [theme])
 
   useEffect(() => {
