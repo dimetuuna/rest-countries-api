@@ -21,10 +21,42 @@ function okResponse() {
   return { ok: true, status: 200, json: async () => raw } as unknown as Response
 }
 
+function inlineData(payload: string) {
+  const element = document.createElement('script')
+  element.type = 'application/json'
+  element.id = 'countries-data'
+  element.textContent = payload
+  document.body.append(element)
+}
+
 describe('getCountries', () => {
   beforeEach(() => {
     resetCountriesCache()
     vi.restoreAllMocks()
+    document.getElementById('countries-data')?.remove()
+  })
+
+  it('uses the dataset inlined in the document without fetching', async () => {
+    inlineData(JSON.stringify(raw))
+    const fetchMock = vi.fn()
+    vi.stubGlobal('fetch', fetchMock)
+
+    const countries = await getCountries()
+
+    expect(fetchMock).not.toHaveBeenCalled()
+    expect(countries).toHaveLength(1)
+    expect(countries[0].alpha3Code).toBe('FJI')
+  })
+
+  it('falls back to the network when the inlined dataset is unreadable', async () => {
+    inlineData('{not json')
+    const fetchMock = vi.fn().mockResolvedValue(okResponse())
+    vi.stubGlobal('fetch', fetchMock)
+
+    const countries = await getCountries()
+
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(countries).toHaveLength(1)
   })
 
   it('fetches the bundled data file once and normalises it', async () => {

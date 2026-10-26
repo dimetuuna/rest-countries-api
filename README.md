@@ -48,6 +48,15 @@ first view pays for the download and every later view (including the detail page
 failed request clears the cache before rethrowing — otherwise a transient network error would
 poison the cache and the Retry button would replay the same rejection forever.
 
+**The build inlines the dataset into the shell.** `scripts/inline-countries.mjs` injects
+`data.json` as `<script type="application/json" id="countries-data">` and `getCountries()` reads it
+synchronously, keeping the request as the fallback path. The app is correct without it, but it
+starts empty: measured on the deployed build, `load` fires at 286 ms while the fetch starts at
+405 ms. Anything that captures the page at `load` — deployment previews, link unfurlers — therefore
+screenshots the loading state. With the dataset inlined the first render already has all 250 cards,
+and the eight eager flags keep `load` blocked until they are painted. The cost is honest: +400 KB
+of HTML (~80 KB compressed) and `data.json` stops being cached on its own.
+
 **Normalisation at the boundary.** `data.json` omits `capital` in 5 entries, `currencies` in 1 and
 `borders` in 85 — they are missing keys, not empty arrays. `normalizeCountries()` converts
 `RawCountry` into a `Country` where every field is present, so no component needs `?? []` guards.
@@ -103,8 +112,8 @@ npm run preview    # serve the production build
 ## Tests
 
 ```bash
-npm test           # Vitest + Testing Library, 60 tests
-npm run e2e        # Playwright, 19 tests (builds and serves the app first)
+npm test           # Vitest + Testing Library, 62 tests
+npm run e2e        # Playwright, 20 tests (builds and serves the app first)
 npm run lint
 ```
 

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "build:pages": "tsc --noEmit && vite build && node scripts/copy-404.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/inline-countries.mjs",
+    "build:pages": "tsc --noEmit && vite build && node scripts/inline-countries.mjs && node scripts/copy-404.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -74,7 +74,31 @@ test('grid survives an unreachable flag CDN', async ({ page }) => {
   expect(flagBox?.height ?? 0).toBeGreaterThan(100)
 })
 
+test('serves the grid without requesting data.json', async ({ page }) => {
+  const requested: string[] = []
+  page.on('request', (request) => requested.push(request.url()))
+
+  await page.goto('/')
+
+  await expect(page.locator('.country-card')).toHaveCount(250)
+  expect(requested.filter((url) => url.includes('data.json'))).toEqual([])
+})
+
 test('error state is accessible and retries successfully', async ({ page }) => {
+  // The built shell inlines the dataset; strip it so this exercises the network
+  // path and its error handling, which still backs the dev server.
+  await page.route(
+    (url) => url.pathname === '/',
+    async (route) => {
+      const response = await route.fetch()
+      const body = (await response.text()).replace(
+        /<script type="application\/json" id="countries-data">[\s\S]*?<\/script>/,
+        '',
+      )
+      await route.fulfill({ response, body })
+    },
+  )
+
   let offline = true
   await page.route('**/data.json', (route) => (offline ? route.abort() : route.continue()))
 
