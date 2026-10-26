@@ -10,7 +10,7 @@ test('theme toggle persists across reloads', async ({ page }) => {
   await page.reload()
 
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-  await expect(page.getByRole('button', { name: 'Dark Mode' })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'Light Mode' })).toHaveAttribute(
     'aria-pressed',
     'true',
   )

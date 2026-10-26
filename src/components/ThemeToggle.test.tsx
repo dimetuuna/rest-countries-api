@@ -31,7 +31,7 @@ describe('ThemeToggle', () => {
 
     expect(button).toHaveAttribute('aria-pressed', 'true')
     expect(document.documentElement.dataset.theme).toBe('dark')
-    expect(button).toHaveAccessibleName('Dark Mode')
+    expect(button).toHaveAccessibleName('Light Mode')
   })
 
   it('keeps the same accessible name as the visible text', () => {

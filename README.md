@@ -96,7 +96,7 @@ are `<h2>`. No skipped heading levels.
 - Flags are decorative (`alt=""`) because the country name is always adjacent text, so screen
   readers do not hear "Germany, Germany".
 - Result counts are announced through an `aria-live="polite"` region.
-- The theme toggle exposes `aria-pressed` and keeps a stable accessible name.
+- The theme toggle exposes `aria-pressed` and relabels itself (Dark Mode / Light Mode) with a matching icon for the target theme.
 - Visible `:focus-visible` rings on cards, chips, buttons and links; `prefers-reduced-motion` is
   respected.
 

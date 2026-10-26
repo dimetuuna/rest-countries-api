@@ -11,8 +11,10 @@
   font-weight: 300;
 }
 
-.back-button:hover {
-  opacity: 0.85;
+@media (hover: hover) {
+  .back-button:hover {
+    opacity: 0.85;
+  }
 }
 
 @media (min-width: 48em) {

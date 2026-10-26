@@ -9,8 +9,10 @@
   font-size: 0.8125rem;
 }
 
-.theme-toggle:hover {
-  opacity: 0.8;
+@media (hover: hover) {
+  .theme-toggle:hover {
+    opacity: 0.8;
+  }
 }
 
 .theme-toggle__icon {

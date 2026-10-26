@@ -15,8 +15,10 @@
   font-size: 0.875rem;
 }
 
-.border-links__item:hover {
-  opacity: 0.85;
+@media (hover: hover) {
+  .border-links__item:hover {
+    opacity: 0.85;
+  }
 }
 
 .border-links__none {
