@@ -48,3 +48,11 @@ Thumbs.db
 /blob-report/
 /playwright/.cache/
 
+
+# Local-only challenge scaffolding (not published)
+/design/
+/preview.jpg
+/style-guide.md
+/AGENTS.md
+/CLAUDE.md
+/docs/
