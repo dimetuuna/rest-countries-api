@@ -78,6 +78,10 @@ are `<h2>`. No skipped heading levels.
 ## Accessibility
 
 - axe-core reports zero violations on the home page (light and dark) and on the detail page.
+- Lighthouse on the production build: 100 accessibility, 100 best practices and 100 SEO on both the
+  home page and a country detail page.
+- Keyboard order follows the visual order (site link → theme toggle → search → region → cards) and
+  links open with Enter, with a visible 2px focus ring.
 - Flags are decorative (`alt=""`) because the country name is always adjacent text, so screen
   readers do not hear "Germany, Germany".
 - Result counts are announced through an `aria-live="polite"` region.

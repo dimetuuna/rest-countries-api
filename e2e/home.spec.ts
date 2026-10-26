@@ -54,6 +54,16 @@ test('home has no accessibility violations in either theme', async ({ page }) =>
   expect(dark.violations).toEqual([])
 })
 
+test('serves a meta description and a valid robots.txt', async ({ page, request }) => {
+  await page.goto('/')
+
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /250 countries/)
+
+  const robots = await request.get('/robots.txt')
+  expect(robots.status()).toBe(200)
+  expect(await robots.text()).toContain('User-agent: *')
+})
+
 test('grid survives an unreachable flag CDN', async ({ page }) => {
   await page.route('**flagcdn.com/**', (route) => route.abort())
 
